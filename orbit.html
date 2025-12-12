@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Orbit Builder - Gravity Playground</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="logo"><a href="/" style="text-decoration:none; color:inherit;">GRAVITY</a></div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="#" class="active">Orbit Builder</a>
+        </nav>
+      </header>
+      
+      <!-- Simulation Container -->
+      <div id="sim-container">
+        <canvas id="orbit-canvas"></canvas>
+        
+        <div class="sim-ui">
+          <div class="instructions">
+            <h3>Orbit Builder</h3>
+            <p>Drag & Release anywhere to launch a planet.</p>
+          </div>
+          <button id="clear-btn" class="glow-button small">Clear All</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/orbit.js"></script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Magnetic Swarm - Gravity Playground</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="logo"><a href="/" style="text-decoration:none; color:inherit;">GRAVITY</a></div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="#" class="active">Magnetic Swarm</a>
+        </nav>
+      </header>
+      
+      <!-- Simulation Container -->
+      <div id="sim-container">
+        <canvas id="swarm-canvas"></canvas>
+        
+        <div class="sim-ui">
+          <div class="instructions">
+            <h3>Magnetic Swarm</h3>
+            <p>Move mouse to scatter particles.</p>
+            <p><strong>Hold Click</strong> to attract them.</p>
+          </div>
+          <button id="toggle-color-btn" class="glow-button small">Switch Mode</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/swarm.js"></script>
+  </body>
+</html>
