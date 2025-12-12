@@ -333,8 +333,14 @@ footer {
   margin-bottom: 2rem;
 }
 
-.small-text {
-  font-size: 0.8rem;
-  margin-top: 1rem;
-  opacity: 0.7;
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+    margin-top: 1rem;
+  }
 }

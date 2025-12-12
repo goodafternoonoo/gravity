@@ -10,6 +10,7 @@ export default defineConfig({
         swarm: resolve(__dirname, 'swarm.html'),
         audio: resolve(__dirname, 'audio.html'),
         fluid: resolve(__dirname, 'fluid.html'),
+        typo: resolve(__dirname, 'typo.html'),
       },
     },
   },

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Typo Physics - Gravity Playground</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="logo"><a href="/" style="text-decoration:none; color:inherit;">GRAVITY</a></div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="#" class="active">Typo Physics</a>
+        </nav>
+      </header>
+      
+      <!-- Simulation Container -->
+      <div id="sim-container">
+        <!-- Canvas is created by Matter.js or we can target an existing one. Matter.Render.create targets element. -->
+        <div id="physics-world"></div>
+        
+        <div class="sim-ui">
+          <div class="instructions">
+            <h3>Typo Physics</h3>
+            <p>Type on your keyboard!</p>
+            <p class="small-text">Click/Touch to grab blocks.</p>
+          </div>
+          <button id="keyboard-btn" class="glow-button small mobile-only">Open Keyboard</button>
+        </div>
+        
+        <!-- Hidden input for mobile keyboard -->
+        <input type="text" id="hidden-input" style="opacity: 0; position: absolute; top: -1000px;">
+      </div>
+    </div>
+    <script type="module" src="/src/typo.js"></script>
+  </body>
+</html>
