@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Gravity Playground</title>
+  </head>
+  <body>
+    <!-- Background Elements -->
+    <div id="cursor-glow"></div>
+    <div id="stars"></div>
+    
+    <div id="app">
+      <header>
+        <div class="logo">GRAVITY</div>
+        <nav>
+          <a href="#" class="active">Playground</a>
+          <a href="#">About</a>
+        </nav>
+      </header>
+      
+      <main>
+        <section class="hero">
+          <h1 class="hero-title">
+            <span class="gradient-text">Explore</span> the<br>
+            Unknown Forces
+          </h1>
+          <p class="hero-subtitle">Interactive experiments in web physics and motion.</p>
+          <button id="explore-btn" class="glow-button">Start Exploring</button>
+        </section>
+
+        <section class="grid-section">
+          <div class="card glass-panel">
+            <h3>Hover Effect</h3>
+            <p>Simple magnetic button interactions.</p>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card glass-panel">
+            <h3>Parallax</h3>
+            <p>Depth perception driven by mouse movement.</p>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card glass-panel">
+            <h3>Coming Soon</h3>
+            <p>More experiments under construction.</p>
+            <div class="card-arrow">→</div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>© 2025 Gravity Playground</p>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
