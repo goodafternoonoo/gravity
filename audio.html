@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Audio Gravity - Gravity Playground</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="logo"><a href="/" style="text-decoration:none; color:inherit;">GRAVITY</a></div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="#" class="active">Audio Gravity</a>
+        </nav>
+      </header>
+      
+      <!-- Simulation Container -->
+      <div id="sim-container">
+        <canvas id="audio-canvas"></canvas>
+        
+        <div id="audio-overlay" class="overlay-center">
+          <div class="overlay-content">
+            <h2>Start Visualizer</h2>
+            <p>Use Microphone or Drop an Audio File</p>
+            <button id="start-mic-btn" class="glow-button">Enable Microphone</button>
+            <p class="small-text">or drag & drop mp3 here</p>
+          </div>
+        </div>
+
+        <div class="sim-ui" style="display: none;" id="controls-ui">
+          <div class="instructions">
+            <h3>Audio Gravity</h3>
+            <p>Playing...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/audio.js"></script>
+  </body>
+</html>
