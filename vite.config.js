@@ -9,6 +9,7 @@ export default defineConfig({
         orbit: resolve(__dirname, 'orbit.html'),
         swarm: resolve(__dirname, 'swarm.html'),
         audio: resolve(__dirname, 'audio.html'),
+        fluid: resolve(__dirname, 'fluid.html'),
       },
     },
   },
