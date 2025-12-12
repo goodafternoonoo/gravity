@@ -120,8 +120,27 @@ window.addEventListener('mousemove', (e) => {
   mouse.y = e.clientY;
 });
 
+window.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  mouse.x = e.touches[0].clientX;
+  mouse.y = e.touches[0].clientY;
+}, { passive: false });
+
 window.addEventListener('mousedown', () => mouse.isPressed = true);
 window.addEventListener('mouseup', () => mouse.isPressed = false);
+
+window.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  mouse.isPressed = true;
+  mouse.x = e.touches[0].clientX;
+  mouse.y = e.touches[0].clientY;
+}, { passive: false });
+
+window.addEventListener('touchend', () => {
+  mouse.isPressed = false;
+  mouse.x = -1000; // Move off screen
+  mouse.y = -1000;
+});
 
 toggleBtn.addEventListener('click', () => {
   mode = (mode + 1) % 2;

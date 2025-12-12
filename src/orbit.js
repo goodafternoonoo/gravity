@@ -151,11 +151,25 @@ canvas.addEventListener('mousedown', (e) => {
   dragCurrent = { x: e.clientX, y: e.clientY };
 });
 
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  isDragging = true;
+  dragStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  dragCurrent = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+}, { passive: false });
+
 window.addEventListener('mousemove', (e) => {
   if (isDragging) {
     dragCurrent = { x: e.clientX, y: e.clientY };
   }
 });
+
+window.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  if (isDragging) {
+    dragCurrent = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }
+}, { passive: false });
 
 window.addEventListener('mouseup', (e) => {
   if (!isDragging) return;
@@ -165,6 +179,17 @@ window.addEventListener('mouseup', (e) => {
   // Reverse the direction so pulling back shoots forward (slingshot style)
   const vx = (dragStart.x - e.clientX) * 0.05;
   const vy = (dragStart.y - e.clientY) * 0.05;
+  
+  planets.push(new Planet(dragStart.x, dragStart.y, vx, vy));
+});
+
+window.addEventListener('touchend', (e) => {
+  if (!isDragging) return;
+  isDragging = false;
+  
+  // Use dragCurrent for the end position since there are no touches in touchend
+  const vx = (dragStart.x - dragCurrent.x) * 0.05;
+  const vy = (dragStart.y - dragCurrent.y) * 0.05;
   
   planets.push(new Planet(dragStart.x, dragStart.y, vx, vy));
 });
