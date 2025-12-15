@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <title>Audio Gravity - Gravity Playground</title>
   </head>
   <body>
@@ -15,6 +15,7 @@
         <div class="logo"><a href="/" style="text-decoration:none; color:inherit;">GRAVITY</a></div>
         <nav>
           <a href="/">Home</a>
+          <a href="/about.html">About</a>
           <a href="#" class="active">Audio Gravity</a>
         </nav>
       </header>
@@ -25,17 +26,17 @@
         
         <div id="audio-overlay" class="overlay-center">
           <div class="overlay-content">
-            <h2>Start Visualizer</h2>
-            <p>Use Microphone or Drop an Audio File</p>
-            <button id="start-mic-btn" class="glow-button">Enable Microphone</button>
-            <p class="small-text">or drag & drop mp3 here</p>
+            <h2>비주얼라이저 시작</h2>
+            <p>마이크를 사용하거나 오디오 파일을 드래그하세요.</p>
+            <button id="start-mic-btn" class="glow-button">마이크 켜기</button>
+            <p class="small-text">또는 여기에 mp3 파일을 놓아주세요</p>
           </div>
         </div>
 
         <div class="sim-ui" style="display: none;" id="controls-ui">
           <div class="instructions">
             <h3>Audio Gravity</h3>
-            <p>Playing...</p>
+            <p>재생 중...</p>
           </div>
         </div>
       </div>
