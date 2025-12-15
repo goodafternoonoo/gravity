@@ -11,6 +11,7 @@ export default defineConfig({
         audio: resolve(__dirname, 'audio.html'),
         fluid: resolve(__dirname, 'fluid.html'),
         typo: resolve(__dirname, 'typo.html'),
+        galaxy: resolve(__dirname, 'galaxy.html'),
         about: resolve(__dirname, 'about.html'),
       },
     },
