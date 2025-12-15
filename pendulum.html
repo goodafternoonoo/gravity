@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chaos Pendulum - Gravity Playground</title>
+  </head>
+  <body>
+    <div id="app">
+      <header></header>
+      
+      <main>
+        <div class="control-panel glass-panel" style="position: absolute; top: 100px; left: 20px; z-index: 10;">
+          <h3>카오스 펜듈럼 (Chaos Pendulum)</h3>
+          <p class="instruction">이중 진자의 예측 불가능한 움직임을 관찰하세요.</p>
+          <div class="control-group">
+            <label>흔적 길이 (Trail): <span id="val-trail">50</span></label>
+            <input type="range" id="trail" min="10" max="200" value="50">
+          </div>
+          <div class="control-group">
+            <label>중력 (Gravity): <span id="val-g">1</span></label>
+            <input type="range" id="g" min="0.1" max="2" step="0.1" value="1">
+          </div>
+          <div class="control-group">
+             <button id="reset-btn" class="glow-button small">초기화 (Reset)</button>
+          </div>
+        </div>
+        <canvas id="pendulum-canvas" class="fullscreen-canvas"></canvas>
+      </main>
+    </div>
+    <script type="module" src="/src/experiments/pendulum.js"></script>
+  </body>
+</html>

@@ -102,6 +102,8 @@ export function initLayout() {
     navHTML += `<a href="#" class="active">Fireworks Gravity</a>`;
   } else if (currentPath.includes('voyage.html')) {
     navHTML += `<a href="#" class="active">Cosmic Voyage</a>`;
+  } else if (currentPath.includes('pendulum.html')) {
+    navHTML += `<a href="#" class="active">Chaos Pendulum</a>`;
   }
 
   navHTML += `</nav>`;

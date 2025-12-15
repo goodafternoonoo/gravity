@@ -15,6 +15,7 @@ export default defineConfig({
         cloth: resolve(__dirname, 'cloth.html'),
         fireworks: resolve(__dirname, 'fireworks.html'),
         voyage: resolve(__dirname, 'voyage.html'),
+        pendulum: resolve(__dirname, 'pendulum.html'),
         about: resolve(__dirname, 'about.html'),
       },
     },
