@@ -37,6 +37,7 @@ const render = Render.create({
 });
 
 Render.run(render);
+render.canvas.classList.add('fullscreen-canvas');
 
 // Create runner
 const runner = Runner.create();
