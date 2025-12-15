@@ -98,6 +98,8 @@ export function initLayout() {
     navHTML += `<a href="#" class="active">Galaxy Generator</a>`;
   } else if (currentPath.includes('cloth.html')) {
     navHTML += `<a href="#" class="active">Neon Cloth</a>`;
+  } else if (currentPath.includes('fireworks.html')) {
+    navHTML += `<a href="#" class="active">Fireworks Gravity</a>`;
   }
 
   navHTML += `</nav>`;

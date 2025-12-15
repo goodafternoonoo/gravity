@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fireworks Gravity - Gravity Playground</title>
+  </head>
+  <body>
+    <div id="app">
+      <header></header>
+      
+      <main>
+        <div class="control-panel glass-panel" style="position: absolute; top: 100px; left: 20px; z-index: 10;">
+          <h3>Fireworks Controls</h3>
+          <p class="instruction">Click anywhere to launch!</p>
+          <div class="control-group">
+            <label>Gravity: <span id="val-gravity">0.2</span></label>
+            <input type="range" id="gravity" min="0.05" max="0.5" step="0.05" value="0.2">
+          </div>
+          <div class="control-group">
+             <button id="auto-btn" class="glow-button small">Auto Fire: OFF</button>
+          </div>
+        </div>
+        <canvas id="fireworks-canvas" class="fullscreen-canvas"></canvas>
+      </main>
+    </div>
+    <script type="module" src="/src/experiments/fireworks.js"></script>
+  </body>
+</html>

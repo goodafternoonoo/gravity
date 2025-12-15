@@ -13,6 +13,7 @@ export default defineConfig({
         typo: resolve(__dirname, 'typo.html'),
         galaxy: resolve(__dirname, 'galaxy.html'),
         cloth: resolve(__dirname, 'cloth.html'),
+        fireworks: resolve(__dirname, 'fireworks.html'),
         about: resolve(__dirname, 'about.html'),
       },
     },
