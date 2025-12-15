@@ -1,7 +1,7 @@
 import './style.css'
-import { initHeader } from './common.js';
+import { initLayout } from './common.js';
 
-initHeader();
+initLayout();
 
 const canvas = document.getElementById('swarm-canvas');
 const ctx = canvas.getContext('2d');

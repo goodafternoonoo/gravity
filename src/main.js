@@ -1,8 +1,8 @@
 import './style.css'
-import { initHeader } from './common.js';
+import { initLayout } from './common.js';
 import { initBackground } from './background.js';
 
-initHeader();
+initLayout();
 initBackground();
 
 document.addEventListener('DOMContentLoaded', () => {

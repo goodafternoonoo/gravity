@@ -1,8 +1,8 @@
 import Matter from 'matter-js';
 import './style.css';
-import { initHeader } from './common.js';
+import { initLayout } from './common.js';
 
-initHeader();
+initLayout();
 
 // Plugin for better mouse interaction (optional but standard)
 // const Matter = require('matter-js'); // Vite handles imports, but standard import above works
