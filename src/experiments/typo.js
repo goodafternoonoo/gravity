@@ -1,11 +1,11 @@
 import Matter from 'matter-js';
 import '../styles/style.css'
 import { initLayout } from '../components/common.js';
+import { playSound } from '../components/sound.js';
 
 initLayout();
 
-// Plugin for better mouse interaction (optional but standard)
-// const Matter = require('matter-js'); // Vite handles imports, but standard import above works
+// ... existing code ...
 
 const Engine = Matter.Engine,
       Render = Matter.Render,
@@ -18,6 +18,18 @@ const Engine = Matter.Engine,
 
 // Create engine
 const engine = Engine.create();
+
+// Sound on Collision
+Events.on(engine, 'collisionStart', (event) => {
+  const pairs = event.pairs;
+  // Limit sound frequency (simple way)
+  if (pairs.length > 0) {
+      // Check velocity for impact threshold?
+      // For now, just pop. Random chance to reduce noise storm?
+      if(Math.random() > 0.5) playSound.pop();
+  }
+});
+
 const world = engine.world;
 
 // Input logic

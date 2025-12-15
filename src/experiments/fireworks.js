@@ -1,112 +1,13 @@
 import '../styles/style.css'
+import { playSound } from '../components/sound.js';
 import { initLayout } from '../components/common.js';
 
 initLayout();
 
-const canvas = document.getElementById('fireworks-canvas');
-const ctx = canvas.getContext('2d');
-
-// UI Controls
-const gravityInput = document.getElementById('gravity');
-const gravityVal = document.getElementById('val-gravity');
-const autoBtn = document.getElementById('auto-btn');
-
-let width, height;
-let fireworks = [];
-let particles = [];
-let GRAVITY = 0.2;
-let isAuto = false;
-let autoInterval = null;
-
-class Firework {
-  constructor(sx, sy, tx, ty) {
-    this.x = sx;
-    this.y = sy;
-    this.tx = tx;
-    this.ty = ty;
-    this.distanceToTarget = Math.hypot(sx - tx, sy - ty);
-    this.distanceTraveled = 0;
-    this.angle = Math.atan2(ty - sy, tx - sx);
-    this.speed = 2;
-    this.acceleration = 1.05;
-    this.brightness = Math.random() * 50 + 50;
-    this.targetRadius = 1;
-    this.hue = Math.random() * 360;
-  }
-
-  update(index) {
-    this.speed *= this.acceleration;
-    
-    const vx = Math.cos(this.angle) * this.speed;
-    const vy = Math.sin(this.angle) * this.speed;
-    
-    this.distanceTraveled = Math.hypot(this.x - this.tx, this.y - this.ty);
-    
-    if (this.distanceTraveled < this.distanceToTarget * 0.1 || this.speed > this.distanceToTarget) {
-      // Reached target
-      createParticles(this.tx, this.ty, this.hue);
-      fireworks.splice(index, 1);
-    } else {
-      this.x += vx;
-      this.y += vy;
-    }
-  }
-
-  draw() {
-    ctx.beginPath();
-    ctx.moveTo(this.x, this.y);
-    const prevX = this.x - Math.cos(this.angle) * 10;
-    const prevY = this.y - Math.sin(this.angle) * 10;
-    ctx.lineTo(prevX, prevY);
-    ctx.strokeStyle = `hsl(${this.hue}, 100%, 50%)`;
-    ctx.stroke();
-    
-    // Target marker
-    // ctx.beginPath();
-    // ctx.arc(this.tx, this.ty, this.targetRadius, 0, Math.PI * 2);
-    // ctx.stroke();
-  }
-}
-
-class Particle {
-  constructor(x, y, hue) {
-    this.x = x;
-    this.y = y;
-    this.hue = hue;
-    this.angle = Math.random() * Math.PI * 2;
-    this.speed = Math.random() * 5 + 1; // Explosion force
-    this.vx = Math.cos(this.angle) * this.speed;
-    this.vy = Math.sin(this.angle) * this.speed;
-    this.friction = 0.95;
-    this.gravity = GRAVITY;
-    this.alpha = 1;
-    this.decay = Math.random() * 0.015 + 0.005;
-  }
-
-  update(index) {
-    this.vx *= this.friction;
-    this.vy *= this.friction;
-    this.vy += this.gravity; // Apply gravity
-
-    this.x += this.vx;
-    this.y += this.vy;
-    
-    this.alpha -= this.decay;
-
-    if (this.alpha <= 0) {
-      particles.splice(index, 1);
-    }
-  }
-
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${this.alpha})`;
-    ctx.fill();
-  }
-}
+// ... existing ...
 
 function createParticles(x, y, hue) {
+  playSound.explosion();
   const particleCount = 50;
   for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle(x, y, hue));
