@@ -313,6 +313,7 @@ footer {
 
 .control-panel .instruction {
   margin-top: 0.5rem;
+  margin-bottom: 1rem;
   font-size: 0.85rem;
   color: var(--color-text-dim);
   line-height: 1.4;
