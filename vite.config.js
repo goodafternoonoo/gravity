@@ -14,6 +14,7 @@ export default defineConfig({
         galaxy: resolve(__dirname, 'galaxy.html'),
         cloth: resolve(__dirname, 'cloth.html'),
         fireworks: resolve(__dirname, 'fireworks.html'),
+        voyage: resolve(__dirname, 'voyage.html'),
         about: resolve(__dirname, 'about.html'),
       },
     },

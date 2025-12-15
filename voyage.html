@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cosmic Voyage - Gravity Playground</title>
+  </head>
+  <body>
+    <div id="app">
+      <header></header>
+      
+      <main>
+        <div class="control-panel glass-panel" style="position: absolute; top: 100px; left: 20px; z-index: 10;">
+          <h3>우주 탐험 (Cosmic Voyage)</h3>
+          <p class="instruction">마우스를 움직여 방향을 조종하세요.</p>
+          <div class="control-group">
+            <label>워프 속도 (Warp Speed): <span id="val-speed">5</span></label>
+            <input type="range" id="speed" min="1" max="50" step="1" value="5">
+          </div>
+          <p class="instruction sm">클릭하면 최대 속도로 가속합니다!</p>
+        </div>
+        <canvas id="voyage-canvas" class="fullscreen-canvas"></canvas>
+      </main>
+    </div>
+    <script type="module" src="/src/experiments/voyage.js"></script>
+  </body>
+</html>
