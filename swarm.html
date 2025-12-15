@@ -8,19 +8,17 @@
     <div id="app">
       <header></header>
       
-      <!-- Simulation Container -->
-      <div id="sim-container">
-        <canvas id="swarm-canvas"></canvas>
-        
-        <div class="sim-ui">
-          <div class="instructions">
-            <h3>Magnetic Swarm</h3>
-            <p>마우스를 움직여 파티클을 흩트려보세요.</p>
-            <p><strong>꾹 누르면(Hold)</strong> 블랙홀처럼 빨려 들어옵니다.</p>
+      <main>
+        <div class="control-panel glass-panel" style="position: absolute; top: 100px; left: 20px; z-index: 10;">
+          <h3>자석 파티클 (Magnetic Swarm)</h3>
+          <p class="instruction">마우스를 움직여 파티클을 흩트려보세요.</p>
+          <p class="instruction"><strong>꾹 누르면(Hold)</strong> 블랙홀처럼 빨려 들어옵니다.</p>
+          <div class="control-group">
+            <button id="toggle-color-btn" class="glow-button small">모드 변경 (Switch)</button>
           </div>
-          <button id="toggle-color-btn" class="glow-button small">모드 변경</button>
         </div>
-      </div>
+        <canvas id="swarm-canvas" class="fullscreen-canvas"></canvas>
+      </main>
     </div>
     <script type="module" src="/src/experiments/swarm.js"></script>
   </body>

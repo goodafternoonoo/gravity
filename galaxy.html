@@ -10,20 +10,20 @@
       
       <main>
         <div class="control-panel glass-panel" style="position: absolute; top: 100px; left: 20px; z-index: 10;">
-          <h3>Galaxy Controls</h3>
+          <h3>은하 설정 (Galaxy Controls)</h3>
           <div class="control-group">
-            <label>Arms: <span id="val-arms">3</span></label>
+            <label>나선 팔 개수: <span id="val-arms">3</span></label>
             <input type="range" id="arms" min="2" max="10" value="3">
           </div>
           <div class="control-group">
-            <label>Expansion: <span id="val-exp">0.5</span></label>
+            <label>팽창 정도: <span id="val-exp">0.5</span></label>
             <input type="range" id="expansion" min="0.1" max="2.0" step="0.1" value="0.5">
           </div>
            <div class="control-group">
-            <label>Color Mode:</label>
-            <button id="toggle-color-btn" class="glow-button small">Switch</button>
+            <label>색상 모드:</label>
+            <button id="toggle-color-btn" class="glow-button small">변경 (Switch)</button>
           </div>
-           <p class="instruction">Click & Drag to Rotate</p>
+           <p class="instruction">화면을 드래그하여 3D로 회전해보세요.</p>
         </div>
         <canvas id="galaxy-canvas" class="fullscreen-canvas"></canvas>
       </main>

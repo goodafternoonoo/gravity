@@ -8,26 +8,23 @@
     <div id="app">
       <header></header>
       
-      <!-- Simulation Container -->
-      <div id="sim-container">
-        <canvas id="audio-canvas"></canvas>
-        
+      <main>
         <div id="audio-overlay" class="overlay-center">
           <div class="overlay-content">
-            <h2>비주얼라이저 시작</h2>
+            <h2>비주얼라이저 시작 (Audio Visualizer)</h2>
             <p>마이크를 사용하거나 오디오 파일을 드래그하세요.</p>
-            <button id="start-mic-btn" class="glow-button">마이크 켜기</button>
+            <button id="start-mic-btn" class="glow-button">마이크 켜기 (Start Mic)</button>
             <p class="small-text">또는 여기에 mp3 파일을 놓아주세요</p>
           </div>
         </div>
 
-        <div class="sim-ui" style="display: none;" id="controls-ui">
-          <div class="instructions">
-            <h3>Audio Gravity</h3>
-            <p>재생 중...</p>
-          </div>
+        <div class="control-panel glass-panel" style="display: none; position: absolute; top: 100px; left: 20px; z-index: 10;" id="controls-ui">
+          <h3>오디오 그래비티 (Audio Gravity)</h3>
+          <p class="instruction">재생 중...</p>
         </div>
-      </div>
+        
+        <canvas id="audio-canvas" class="fullscreen-canvas"></canvas>
+      </main>
     </div>
     <script type="module" src="/src/experiments/audio.js"></script>
   </body>

@@ -176,8 +176,10 @@ if (keyboardBtn && hiddenInput) {
 }
 
 // Initial Spawn
-setTimeout(() => spawnLetter('H'), 500);
-setTimeout(() => spawnLetter('E'), 800);
-setTimeout(() => spawnLetter('L'), 1100);
-setTimeout(() => spawnLetter('L'), 1400);
-setTimeout(() => spawnLetter('O'), 1700);
+setTimeout(() => spawnLetter('G'), 500);
+setTimeout(() => spawnLetter('R'), 800);
+setTimeout(() => spawnLetter('A'), 1100);
+setTimeout(() => spawnLetter('V'), 1400);
+setTimeout(() => spawnLetter('I'), 1700);
+setTimeout(() => spawnLetter('T'), 2000);
+setTimeout(() => spawnLetter('Y'), 2300);

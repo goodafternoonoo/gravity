@@ -148,7 +148,7 @@ gravityInput.addEventListener('input', (e) => {
 
 autoBtn.addEventListener('click', () => {
   isAuto = !isAuto;
-  autoBtn.textContent = `Auto Fire: ${isAuto ? 'ON' : 'OFF'}`;
+  autoBtn.textContent = `자동 발사: ${isAuto ? '켜기' : '끄기'}`;
   
   if (isAuto) {
     autoInterval = setInterval(() => {

@@ -8,23 +8,22 @@
     <div id="app">
       <header></header>
       
-      <!-- Simulation Container -->
-      <div id="sim-container">
+      <main>
         <!-- Canvas is created by Matter.js or we can target an existing one. Matter.Render.create targets element. -->
         <div id="physics-world"></div>
         
-        <div class="sim-ui">
-          <div class="instructions">
-            <h3>Typo Physics</h3>
-            <p>키보드를 입력해 보세요!</p>
-            <p class="small-text">클릭/터치로 글자를 잡을 수 있습니다.</p>
+        <div class="control-panel glass-panel" style="position: absolute; top: 100px; left: 20px; z-index: 10;">
+          <h3>타이포 물리엔진 (Typo Physics)</h3>
+          <p class="instruction">키보드를 입력해 보세요!</p>
+          <p class="instruction sm">클릭/터치로 글자를 잡을 수 있습니다.</p>
+          <div class="control-group">
+            <button id="keyboard-btn" class="glow-button small mobile-only">키보드 열기</button>
           </div>
-          <button id="keyboard-btn" class="glow-button small mobile-only">키보드 열기</button>
         </div>
         
         <!-- Hidden input for mobile keyboard -->
         <input type="text" id="hidden-input" style="opacity: 0; position: absolute; top: -1000px;">
-      </div>
+      </main>
     </div>
     <script type="module" src="/src/experiments/typo.js"></script>
   </body>

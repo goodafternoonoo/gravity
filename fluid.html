@@ -8,17 +8,13 @@
     <div id="app">
       <header></header>
       
-      <!-- Simulation Container -->
-      <div id="sim-container">
-        <canvas id="fluid-canvas"></canvas>
-        
-        <div class="sim-ui">
-          <div class="instructions">
-            <h3>Neon Fluid</h3>
-            <p>드래그하여 네온 빛 잉크를 휘저어보세요.</p>
-          </div>
+      <main>
+        <div class="control-panel glass-panel" style="position: absolute; top: 100px; left: 20px; z-index: 10;">
+          <h3>네온 플루이드 (Neon Fluid)</h3>
+          <p class="instruction">드래그하여 네온 빛 잉크를 휘저어보세요.</p>
         </div>
-      </div>
+        <canvas id="fluid-canvas" class="fullscreen-canvas"></canvas>
+      </main>
     </div>
     <script type="module" src="/src/experiments/fluid.js"></script>
   </body>
