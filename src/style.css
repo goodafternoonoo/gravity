@@ -73,6 +73,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
+  position: relative;
+  z-index: 10; /* Ensure header is above full-screen canvas */
 }
 
 .logo {
