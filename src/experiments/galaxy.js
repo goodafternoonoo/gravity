@@ -188,16 +188,22 @@ toggleBtn.addEventListener('click', () => {
 });
 
 // Drag to Rotate
+// Drag to Rotate
 canvas.addEventListener('mousedown', (e) => {
   isDragging = true;
-  lastMouse = { x: e.clientX, y: e.clientY };
+  const rect = canvas.getBoundingClientRect();
+  lastMouse = { x: e.clientX - rect.left, y: e.clientY - rect.top };
 });
 canvas.addEventListener('mouseup', () => isDragging = false);
 
 canvas.addEventListener('mousemove', (e) => {
   if (isDragging) {
-    const dx = e.clientX - lastMouse.x;
-    const dy = e.clientY - lastMouse.y;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const dx = x - lastMouse.x;
+    const dy = y - lastMouse.y;
     
     angleY += dx * 0.005;
     angleX -= dy * 0.005; // Invert Y for natural feel
@@ -205,7 +211,7 @@ canvas.addEventListener('mousemove', (e) => {
     // Clamp X rotation
     angleX = Math.max(-Math.PI/2, Math.min(Math.PI/2, angleX));
     
-    lastMouse = { x: e.clientX, y: e.clientY };
+    lastMouse = { x, y };
   }
 });
 

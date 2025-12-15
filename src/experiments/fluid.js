@@ -238,20 +238,39 @@ function handleInput(x, y, isPressed) {
 }
 
 // Listeners
+// Listeners
 window.addEventListener('resize', resize);
 resize();
 
-canvas.addEventListener('mousemove', (e) => handleInput(e.clientX, e.clientY, e.buttons === 1));
-canvas.addEventListener('mousedown', (e) => lastMouse = { x: e.clientX, y: e.clientY });
+function getMousePos(clientX, clientY) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: clientX - rect.left,
+    y: clientY - rect.top
+  };
+}
+
+canvas.addEventListener('mousemove', (e) => {
+  const pos = getMousePos(e.clientX, e.clientY);
+  handleInput(pos.x, pos.y, e.buttons === 1);
+});
+canvas.addEventListener('mousedown', (e) => {
+  const pos = getMousePos(e.clientX, e.clientY);
+  lastMouse = { x: pos.x, y: pos.y };
+});
 
 // Touch
 canvas.addEventListener('touchmove', (e) => {
   e.preventDefault();
-  handleInput(e.touches[0].clientX, e.touches[0].clientY, true);
+  const touch = e.touches[0];
+  const pos = getMousePos(touch.clientX, touch.clientY);
+  handleInput(pos.x, pos.y, true);
 }, { passive: false });
 canvas.addEventListener('touchstart', (e) => {
   e.preventDefault();
-  lastMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  const touch = e.touches[0];
+  const pos = getMousePos(touch.clientX, touch.clientY);
+  lastMouse = { x: pos.x, y: pos.y };
 }, { passive: false });
 
 

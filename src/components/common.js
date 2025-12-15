@@ -96,6 +96,8 @@ export function initLayout() {
     navHTML += `<a href="#" class="active">Typo Physics</a>`;
   } else if (currentPath.includes('galaxy.html')) {
     navHTML += `<a href="#" class="active">Galaxy Generator</a>`;
+  } else if (currentPath.includes('cloth.html')) {
+    navHTML += `<a href="#" class="active">Neon Cloth</a>`;
   }
 
   navHTML += `</nav>`;

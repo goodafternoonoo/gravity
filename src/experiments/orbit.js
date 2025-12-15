@@ -146,31 +146,47 @@ function animate() {
 }
 
 // Event Listeners
+// Event Listeners
 window.addEventListener('resize', resize);
+
+function getMousePos(e) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top
+  };
+}
 
 canvas.addEventListener('mousedown', (e) => {
   isDragging = true;
-  dragStart = { x: e.clientX, y: e.clientY };
-  dragCurrent = { x: e.clientX, y: e.clientY };
+  const pos = getMousePos(e);
+  dragStart = { x: pos.x, y: pos.y };
+  dragCurrent = { x: pos.x, y: pos.y };
 });
 
 canvas.addEventListener('touchstart', (e) => {
   e.preventDefault();
   isDragging = true;
-  dragStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-  dragCurrent = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  // Touch needs clientX/Y from first touch
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches[0];
+  dragStart = { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+  dragCurrent = { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
 }, { passive: false });
 
 window.addEventListener('mousemove', (e) => {
   if (isDragging) {
-    dragCurrent = { x: e.clientX, y: e.clientY };
+    const pos = getMousePos(e);
+    dragCurrent = { x: pos.x, y: pos.y };
   }
 });
 
 window.addEventListener('touchmove', (e) => {
   e.preventDefault();
   if (isDragging) {
-    dragCurrent = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    dragCurrent = { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
   }
 }, { passive: false });
 
@@ -178,10 +194,12 @@ window.addEventListener('mouseup', (e) => {
   if (!isDragging) return;
   isDragging = false;
   
+  const pos = getMousePos(e);
+  
   // Calculate launch velocity
   // Reverse the direction so pulling back shoots forward (slingshot style)
-  const vx = (dragStart.x - e.clientX) * 0.05;
-  const vy = (dragStart.y - e.clientY) * 0.05;
+  const vx = (dragStart.x - pos.x) * 0.05;
+  const vy = (dragStart.y - pos.y) * 0.05;
   
   planets.push(new Planet(dragStart.x, dragStart.y, vx, vy));
 });

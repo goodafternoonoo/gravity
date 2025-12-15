@@ -12,6 +12,7 @@ export default defineConfig({
         fluid: resolve(__dirname, 'fluid.html'),
         typo: resolve(__dirname, 'typo.html'),
         galaxy: resolve(__dirname, 'galaxy.html'),
+        cloth: resolve(__dirname, 'cloth.html'),
         about: resolve(__dirname, 'about.html'),
       },
     },

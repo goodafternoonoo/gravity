@@ -116,17 +116,31 @@ function animate() {
 }
 
 // Event Listeners
+// Event Listeners
 window.addEventListener('resize', init);
 
+function getMousePos(e) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top
+  };
+}
+
+// Swarm usually tracks mouse across screen, but better to track over canvas area
+// Window listener is fine if we check bounds or just offset
 window.addEventListener('mousemove', (e) => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
+  const pos = getMousePos(e);
+  mouse.x = pos.x;
+  mouse.y = pos.y;
 });
 
 window.addEventListener('touchmove', (e) => {
   e.preventDefault();
-  mouse.x = e.touches[0].clientX;
-  mouse.y = e.touches[0].clientY;
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches[0];
+  mouse.x = touch.clientX - rect.left;
+  mouse.y = touch.clientY - rect.top;
 }, { passive: false });
 
 window.addEventListener('mousedown', () => mouse.isPressed = true);
@@ -135,8 +149,10 @@ window.addEventListener('mouseup', () => mouse.isPressed = false);
 window.addEventListener('touchstart', (e) => {
   e.preventDefault();
   mouse.isPressed = true;
-  mouse.x = e.touches[0].clientX;
-  mouse.y = e.touches[0].clientY;
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches[0];
+  mouse.x = touch.clientX - rect.left;
+  mouse.y = touch.clientY - rect.top;
 }, { passive: false });
 
 window.addEventListener('touchend', () => {
