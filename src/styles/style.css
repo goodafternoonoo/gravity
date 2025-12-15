@@ -248,12 +248,16 @@ footer {
   z-index: 0; /* Behind header but front enough */
 }
 
-#orbit-canvas, #swarm-canvas, #audio-canvas {
+#orbit-canvas, #swarm-canvas, #audio-canvas, .fullscreen-canvas {
   display: block;
+  position: fixed; /* Fix: Ensure it covers screen for correct coordinates */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   touch-action: none; /* Prevent scrolling on mobile */
   background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
+  z-index: 0;
 }
 
 .sim-ui {
