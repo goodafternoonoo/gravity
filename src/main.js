@@ -1,4 +1,7 @@
 import './style.css'
+import { initHeader } from './common.js';
+
+initHeader();
 
 document.addEventListener('DOMContentLoaded', () => {
   const cursorGlow = document.getElementById('cursor-glow');
