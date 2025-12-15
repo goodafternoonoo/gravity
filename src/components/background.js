@@ -3,6 +3,11 @@
  * Creates a sense of depth and slow movement for the main page background.
  */
 
+/**
+ * Neon Connectivity Network Background
+ * Interactive particles connected by lines.
+ */
+
 export function initBackground() {
   const canvas = document.getElementById('bg-canvas');
   if (!canvas) return;
@@ -10,58 +15,62 @@ export function initBackground() {
   const ctx = canvas.getContext('2d');
   let width, height;
   
-  // Star properties
-  const starCount = 200;
-  const stars = [];
+  // Configuration
+  const particleCount = 100;
+  const connectionDistance = 150;
+  const mouseDistance = 200;
   
-  // Mouse parallax
-  let mouseX = 0;
-  let mouseY = 0;
-  let targetX = 0;
-  let targetY = 0;
+  const particles = [];
+  
+  // Mouse
+  let mouse = { x: null, y: null };
 
-  class Star {
+  class Particle {
     constructor() {
-      this.reset();
-      // Start with random z to fill the screen
-      this.z = Math.random() * width; 
+      this.init();
     }
 
-    reset() {
-      this.x = (Math.random() - 0.5) * width * 2;
-      this.y = (Math.random() - 0.5) * height * 2;
-      this.z = width; // Start far away
-      this.size = Math.random() * 2;
-      this.opacity = Math.random();
+    init() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 1;
+      this.vy = (Math.random() - 0.5) * 1;
+      this.size = Math.random() * 2 + 1;
+      this.color = 'rgb(112, 0, 255)'; // Primary Purple base
     }
 
-    update(speed) {
-      // Move towards viewer (decrease z)
-      this.z -= speed;
-      
-      // Parallax offset
-      this.x += (mouseX - targetX) * 0.005;
-      this.y += (mouseY - targetY) * 0.005;
+    update() {
+      // Move
+      this.x += this.vx;
+      this.y += this.vy;
 
-      // Reset if passed viewer
-      if (this.z <= 0) {
-        this.reset();
+      // Bounce edges
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      if (this.y < 0 || this.y > height) this.vy *= -1;
+
+      // Mouse Interaction (Repulsion)
+      if (mouse.x != null) {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < mouseDistance) {
+          const forceDirectionX = dx / dist;
+          const forceDirectionY = dy / dist;
+          const force = (mouseDistance - dist) / mouseDistance;
+          const directionX = forceDirectionX * force * 3;
+          const directionY = forceDirectionY * force * 3;
+
+          this.x -= directionX;
+          this.y -= directionY;
+        }
       }
     }
 
     draw() {
-      // Perspective projection
-      const x = (this.x / this.z) * width + width / 2;
-      const y = (this.y / this.z) * height + height / 2;
-      
-      // Size gets bigger as it gets closer
-      const r = (this.size / this.z) * width * 0.5; // Scale factor
-      
-      const newOpacity = Math.min(this.opacity, (width - this.z) / width);
-
       ctx.beginPath();
-      ctx.fillStyle = `rgba(255, 255, 255, ${newOpacity})`;
-      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
       ctx.fill();
     }
   }
@@ -71,48 +80,66 @@ export function initBackground() {
     height = window.innerHeight;
     canvas.width = width;
     canvas.height = height;
+    
+    // Re-init particles on drastic resize? Or just let them be
+    if (particles.length === 0) {
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
   }
 
   function init() {
     resize();
     window.addEventListener('resize', resize);
     
-    // Mouse move for parallax
     window.addEventListener('mousemove', (e) => {
-      targetX = (e.clientX - width / 2) * 0.1;
-      targetY = (e.clientY - height / 2) * 0.1;
+      mouse.x = e.x;
+      mouse.y = e.y;
     });
 
-    // Create stars
-    for (let i = 0; i < starCount; i++) {
-      stars.push(new Star());
-    }
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
 
     animate();
   }
 
   function animate() {
-    // Smooth mouse follow
-    mouseX += (targetX - mouseX) * 0.05;
-    mouseY += (targetY - mouseY) * 0.05;
-
-    // Clear background (or use trail effect)
-    ctx.fillStyle = '#03030b'; // Match --color-bg
-    ctx.fillRect(0, 0, width, height);
-
-    // Draw Nebula/Glow (optional static gradients for depth)
-    const gradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, width);
-    gradient.addColorStop(0, '#0a0a2a');
-    gradient.addColorStop(1, '#03030b');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, width, height);
-
-    stars.forEach(star => {
-      star.update(2); // Speed
-      star.draw();
+    ctx.clearRect(0, 0, width, height);
+    
+    // Update and Draw Particles
+    particles.forEach(p => {
+        p.update();
+        p.draw();
     });
 
+    // Draw Connections
+    connectParticles();
+
     requestAnimationFrame(animate);
+  }
+
+  function connectParticles() {
+    let opacityValue = 1;
+    for (let a = 0; a < particles.length; a++) {
+      for (let b = a; b < particles.length; b++) {
+        const dx = particles[a].x - particles[b].x;
+        const dy = particles[a].y - particles[b].y;
+        const distance = dx * dx + dy * dy;
+
+        if (distance < (connectionDistance * connectionDistance)) {
+          opacityValue = 1 - (distance / (connectionDistance * connectionDistance));
+          ctx.strokeStyle = `rgba(0, 210, 255, ${opacityValue * 0.5})`; // Secondary Cyan
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
+          ctx.stroke();
+        }
+      }
+    }
   }
 
   init();
