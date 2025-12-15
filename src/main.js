@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Parallax effect for hero title
+    /* Parallax effect removed by user request (2025-12-15)
     if (heroTitle) {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
@@ -71,10 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const moveY = (y - centerY) / 25;
         heroTitle.style.transform = `rotateX(${-moveY}deg) rotateY(${moveX}deg)`;
     }
+    */
   });
 
   // Card Tilt Effect - Enhanced
+  // Tilt effect removed by user request (2025-12-15)
+  /*
+  const isAbout = window.location.pathname.includes('about.html');
+  
   cards.forEach(card => {
+    if (isAbout) return; // Disable tilt completely on About page
+
     card.addEventListener('mouseenter', () => {
       // Remove transition for instant follow
       card.style.transition = 'none';
@@ -88,11 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       
+      const isAbout = window.location.pathname.includes('about.html');
+      const divisor = isAbout ? 60 : 10; // Extremely subtle on About page
+      const scale = isAbout ? 1.0 : 1.05; // No scale on About page
+
       // Stronger and inverted for 3D look
-      const rotateX = (centerY - y) / 10; 
-      const rotateY = (x - centerX) / 10;
+      const rotateX = (centerY - y) / divisor; 
+      const rotateY = (x - centerX) / divisor;
       
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
     });
     
     card.addEventListener('mouseleave', () => {
@@ -101,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
     });
   });
+  */
 
   // Button interaction
   const btn = document.getElementById('explore-btn');
