@@ -1,5 +1,5 @@
-import './style.css'
-import { initLayout } from './common.js';
+import '../styles/style.css'
+import { initLayout } from '../components/common.js';
 
 initLayout();
 

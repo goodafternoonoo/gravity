@@ -1,6 +1,6 @@
-import './style.css'
-import { initLayout } from './common.js';
-import { initBackground } from './background.js';
+import './styles/style.css'
+import { initLayout } from './components/common.js';
+import { initBackground } from './components/background.js';
 
 initLayout();
 initBackground();
