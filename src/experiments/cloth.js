@@ -236,6 +236,34 @@ window.addEventListener('mousemove', (e) => {
 window.addEventListener('mouseup', () => mouse.isDown = false);
 window.addEventListener('contextmenu', e => e.preventDefault()); // Prevent menu on right click
 
+// Touch Support
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  mouse.isDown = true;
+  mouse.button = 0; // Treat as left click
+  const pos = getMousePos(e.touches[0]);
+  mouse.x = pos.x;
+  mouse.y = pos.y;
+}, { passive: false });
+
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  const pos = getMousePos(e.touches[0]);
+  mouse.x = pos.x;
+  mouse.y = pos.y;
+}, { passive: false });
+
+window.addEventListener('touchend', () => mouse.isDown = false); 
+
+// Helper for Touch
+function getMousePos(e) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top
+  };
+}
+
 // Init
 init();
 animate();

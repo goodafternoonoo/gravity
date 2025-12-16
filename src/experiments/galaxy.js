@@ -215,6 +215,37 @@ canvas.addEventListener('mousemove', (e) => {
   }
 });
 
+// Touch Support
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  isDragging = true;
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches[0];
+  lastMouse = { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+}, { passive: false });
+
+canvas.addEventListener('touchend', () => isDragging = false);
+
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault(); // Prevent scrolling
+  if (isDragging) {
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+
+    const dx = x - lastMouse.x;
+    const dy = y - lastMouse.y;
+    
+    angleY += dx * 0.005;
+    angleX -= dy * 0.005; 
+    
+    angleX = Math.max(-Math.PI/2, Math.min(Math.PI/2, angleX));
+    
+    lastMouse = { x, y };
+  }
+}, { passive: false });
+
 // Init
 init();
 animate();

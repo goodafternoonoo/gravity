@@ -136,10 +136,24 @@ window.addEventListener('mousemove', (e) => {
 });
 
 // Hyperdrive on click
+// Hyperdrive on click
 canvas.addEventListener('mousedown', () => isHyperdrive = true);
 canvas.addEventListener('mouseup', () => isHyperdrive = false);
-canvas.addEventListener('touchstart', () => isHyperdrive = true);
-canvas.addEventListener('touchend', () => isHyperdrive = false);
+canvas.addEventListener('touchstart', (e) => {
+    isHyperdrive = true;
+    const pos = getMousePos(e.touches[0]);
+    mouse.x = pos.x;
+    mouse.y = pos.y;
+    mouse.active = true;
+}, { passive: false });
+canvas.addEventListener('touchend', () => { isHyperdrive = false; });
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const pos = getMousePos(e.touches[0]);
+    mouse.x = pos.x;
+    mouse.y = pos.y;
+    mouse.active = true;
+}, { passive: false });
 
 init();
 animate();

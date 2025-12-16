@@ -178,13 +178,20 @@ function getMousePos(e) {
 
 canvas.addEventListener('mousedown', (e) => {
   const pos = getMousePos(e);
-  // Launch from bottom center to click position
-  // Or launch from bottom x to click position?
-  // Let's launch from bottom random x to click
+  launchAt(pos.x, pos.y);
+});
+
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const pos = getMousePos(e.touches[0]);
+    launchAt(pos.x, pos.y);
+}, { passive: false });
+
+function launchAt(targetX, targetY) {
   const sx = Math.random() * (width * 0.4) + width * 0.3; // Center-ish launch
   const sy = height;
-  fireworks.push(new Firework(sx, sy, pos.x, pos.y));
-});
+  fireworks.push(new Firework(sx, sy, targetX, targetY));
+}
 
 // Init
 init();
