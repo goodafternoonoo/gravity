@@ -115,6 +115,8 @@ export function initLayout() {
     navHTML += `<a href="#" class="active">Cosmic Voyage</a>`;
   } else if (currentPath.includes('pendulum.html')) {
     navHTML += `<a href="#" class="active">Chaos Pendulum</a>`;
+  } else if (currentPath.includes('jelly.html')) {
+    navHTML += `<a href="#" class="active">Neon Jelly</a>`;
   }
 
   navHTML += `</nav>`;
