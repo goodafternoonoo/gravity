@@ -169,10 +169,24 @@ function spawnLetter(char) {
 }
 
 // Unified Input Handler (PC & Mobile)
+let isComposing = false;
+
+hiddenInput.addEventListener('compositionstart', () => {
+    isComposing = true;
+});
+
+hiddenInput.addEventListener('compositionend', (e) => {
+    isComposing = false;
+    if (e.data) {
+        spawnLetter(e.data);
+    }
+    hiddenInput.value = '';
+});
+
 hiddenInput.addEventListener('input', (e) => {
+  if (isComposing) return; // Wait for composition to end
+  
   if (e.data) {
-    // For Korean, e.data comes in as characters.
-    // For English, it also works.
     spawnLetter(e.data); 
   }
   hiddenInput.value = '';
