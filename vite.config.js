@@ -16,6 +16,8 @@ export default defineConfig({
         fireworks: resolve(__dirname, 'fireworks.html'),
         voyage: resolve(__dirname, 'voyage.html'),
         pendulum: resolve(__dirname, 'pendulum.html'),
+        jelly: resolve(__dirname, 'jelly.html'),
+        brush: resolve(__dirname, 'brush.html'),
         about: resolve(__dirname, 'about.html'),
       },
     },
