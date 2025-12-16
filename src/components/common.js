@@ -117,6 +117,8 @@ export function initLayout() {
     navHTML += `<a href="#" class="active">Chaos Pendulum</a>`;
   } else if (currentPath.includes('jelly.html')) {
     navHTML += `<a href="#" class="active">Neon Jelly</a>`;
+  } else if (currentPath.includes('brush.html')) {
+    navHTML += `<a href="#" class="active">Gravity Brush</a>`;
   }
 
   navHTML += `</nav>`;

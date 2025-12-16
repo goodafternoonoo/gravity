@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gravity Brush - Gravity Playground</title>
+  </head>
+  <body>
+    <div id="app">
+      <header></header>
+      
+      <main>
+        <div class="control-panel glass-panel" style="position: absolute; top: 100px; left: 20px; z-index: 10;">
+          <h3>중력 브러쉬 (Gravity Brush)</h3>
+          <p class="instruction">화면에 선을 그어 파티클의 흐름을 만들어보세요.</p>
+          <div class="control-group">
+            <button id="clear-brush-btn" class="glow-button small">브러쉬 지우기 (Clear Path)</button>
+          </div>
+        </div>
+        <canvas id="brush-canvas" class="fullscreen-canvas"></canvas>
+      </main>
+    </div>
+    <script type="module" src="/src/experiments/brush.js"></script>
+  </body>
+</html>

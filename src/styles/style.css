@@ -78,6 +78,7 @@ footer,
 
 #orbit-canvas, #swarm-canvas, #audio-canvas, 
 #galaxy-canvas, #cloth-canvas, #fireworks-canvas, #voyage-canvas, #pendulum-canvas,
+#jelly-canvas, #brush-canvas,
 .fullscreen-canvas {
   display: block;
   position: fixed;
