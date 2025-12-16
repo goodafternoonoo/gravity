@@ -120,7 +120,7 @@ function createTextTexture(text) {
   const color = `hsl(${hue}, 100%, 70%)`;
   
   ctx.fillStyle = color;
-  ctx.font = 'bold 80px Outfit';
+  ctx.font = 'bold 80px "Outfit", "Noto Sans KR", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(text, size/2, size/2);
@@ -168,31 +168,51 @@ function spawnLetter(char) {
   }
 }
 
-// Keyboard input
+// Unified Input Handler (PC & Mobile)
+hiddenInput.addEventListener('input', (e) => {
+  if (e.data) {
+    // For Korean, e.data comes in as characters.
+    // For English, it also works.
+    spawnLetter(e.data); 
+  }
+  hiddenInput.value = '';
+});
+
+// Global Keydown (Fallback & Focus Trigger)
 window.addEventListener('keydown', (e) => {
-  if (e.key.length === 1) { // Single char
+  if (document.activeElement === hiddenInput) return; // Let hiddenInput handle it
+
+  if (e.isComposing || e.keyCode === 229) {
+    // If user tries to type Korean without focus, try to focus for next chars
+    hiddenInput.focus({preventScroll: true});
+    return;
+  }
+  
+  // Single char English input while not focused
+  if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
     spawnLetter(e.key.toUpperCase());
+    // Focus for continuous typing
+    hiddenInput.focus({preventScroll: true});
   }
 });
 
-// Mobile virtual keyboard support
-// Mobile virtual keyboard support
-if (keyboardBtn && hiddenInput) {
+// PC: Auto-focus hidden input on interaction to support IME
+render.canvas.addEventListener('mousedown', () => {
+    // Check if not touch device (PC/Desktop)
+    if (!window.matchMedia('(pointer: coarse)').matches) {
+        hiddenInput.focus({preventScroll: true});
+    }
+});
+
+// Mobile virtual keyboard support (Explicit Button)
+if (keyboardBtn) {
   const openKeyboard = (e) => {
-      e.stopPropagation(); // Prevent canvas touch
+      e.stopPropagation(); 
       hiddenInput.focus();
   };
   
   keyboardBtn.addEventListener('click', openKeyboard);
   keyboardBtn.addEventListener('touchstart', openKeyboard, { passive: false });
-  
-  hiddenInput.addEventListener('input', (e) => {
-    if (e.data) {
-      spawnLetter(e.data.toUpperCase());
-    }
-    // Clear input to allow typing same char repeatedly and keep buffer clean
-    hiddenInput.value = '';
-  });
 }
 
 // Initial Spawn

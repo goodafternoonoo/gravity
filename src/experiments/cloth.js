@@ -255,15 +255,6 @@ canvas.addEventListener('touchmove', (e) => {
 
 window.addEventListener('touchend', () => mouse.isDown = false); 
 
-// Helper for Touch
-function getMousePos(e) {
-  const rect = canvas.getBoundingClientRect();
-  return {
-    x: e.clientX - rect.left,
-    y: e.clientY - rect.top
-  };
-}
-
 // Init
 init();
 animate();
