@@ -87,7 +87,8 @@ footer,
   height: 100%;
   touch-action: none; 
   background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
-  z-index: -1; /* Behind UI */
+  z-index: 0; /* Restore to 0 so it's interactable */
+  pointer-events: auto; /* Explicitly auto, resolving inheritance from #app */
 }
 
 header {

@@ -129,36 +129,40 @@ function getMousePos(e) {
 
 // Swarm usually tracks mouse across screen, but better to track over canvas area
 // Window listener is fine if we check bounds or just offset
+// Mouse/Touch Interaction
+function updateMouse(x, y) {
+  mouse.x = x;
+  mouse.y = y;
+}
+
+// Mouse
 window.addEventListener('mousemove', (e) => {
   const pos = getMousePos(e);
-  mouse.x = pos.x;
-  mouse.y = pos.y;
+  updateMouse(pos.x, pos.y);
 });
 
-window.addEventListener('touchmove', (e) => {
-  e.preventDefault();
+// Canvas-only touch to prevent blocking UI
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault(); // Prevent scrolling ONLY when touching canvas
   const rect = canvas.getBoundingClientRect();
   const touch = e.touches[0];
-  mouse.x = touch.clientX - rect.left;
-  mouse.y = touch.clientY - rect.top;
+  updateMouse(touch.clientX - rect.left, touch.clientY - rect.top);
 }, { passive: false });
 
-window.addEventListener('mousedown', () => mouse.isPressed = true);
+canvas.addEventListener('mousedown', () => mouse.isPressed = true);
 window.addEventListener('mouseup', () => mouse.isPressed = false);
 
-window.addEventListener('touchstart', (e) => {
+canvas.addEventListener('touchstart', (e) => {
   e.preventDefault();
   mouse.isPressed = true;
   const rect = canvas.getBoundingClientRect();
   const touch = e.touches[0];
-  mouse.x = touch.clientX - rect.left;
-  mouse.y = touch.clientY - rect.top;
+  updateMouse(touch.clientX - rect.left, touch.clientY - rect.top);
 }, { passive: false });
 
 window.addEventListener('touchend', () => {
   mouse.isPressed = false;
-  mouse.x = -1000; // Move off screen
-  mouse.y = -1000;
+  updateMouse(-1000, -1000);
 });
 
 toggleBtn.addEventListener('click', () => {
