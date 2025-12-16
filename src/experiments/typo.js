@@ -176,15 +176,22 @@ window.addEventListener('keydown', (e) => {
 });
 
 // Mobile virtual keyboard support
+// Mobile virtual keyboard support
 if (keyboardBtn && hiddenInput) {
-  keyboardBtn.addEventListener('click', () => {
-    hiddenInput.focus();
-  });
+  const openKeyboard = (e) => {
+      e.stopPropagation(); // Prevent canvas touch
+      hiddenInput.focus();
+  };
+  
+  keyboardBtn.addEventListener('click', openKeyboard);
+  keyboardBtn.addEventListener('touchstart', openKeyboard, { passive: false });
   
   hiddenInput.addEventListener('input', (e) => {
     if (e.data) {
       spawnLetter(e.data.toUpperCase());
     }
+    // Clear input to allow typing same char repeatedly and keep buffer clean
+    hiddenInput.value = '';
   });
 }
 
