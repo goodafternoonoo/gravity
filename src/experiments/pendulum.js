@@ -33,6 +33,16 @@ let maxPath = 50;
 function init() {
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
+  
+  // Responsive Scale
+  const minDim = Math.min(width, height);
+  // On mobile (e.g. 375px), 0.15 * 375 = ~56px. Total swing ~220px. Good.
+  // On desktop (e.g. 1080px), 0.15 * 1080 = ~160px.
+  const scaleRef = minDim < 600 ? 0.18 : 0.15; 
+  
+  r1 = minDim * scaleRef;
+  r2 = minDim * scaleRef;
+  
   path = [];
 }
 

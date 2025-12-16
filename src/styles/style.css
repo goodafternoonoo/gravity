@@ -60,6 +60,34 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  pointer-events: none; /* Let clicks pass through to canvas */
+}
+
+/* Enable interaction for UI elements */
+header, 
+.control-panel, 
+.hero, 
+.grid-section,
+footer,
+.sim-ui,
+.overlay-content {
+  pointer-events: auto;
+}
+
+/* ... existing styles ... */
+
+#orbit-canvas, #swarm-canvas, #audio-canvas, 
+#galaxy-canvas, #cloth-canvas, #fireworks-canvas, #voyage-canvas, #pendulum-canvas,
+.fullscreen-canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none; 
+  background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
+  z-index: -1; /* Behind UI */
 }
 
 header {
@@ -249,19 +277,7 @@ footer {
   z-index: 0; /* Behind header but front enough */
 }
 
-#orbit-canvas, #swarm-canvas, #audio-canvas, 
-#galaxy-canvas, #cloth-canvas, #fireworks-canvas, #voyage-canvas, #pendulum-canvas,
-.fullscreen-canvas {
-  display: block;
-  position: fixed; /* Fix: Ensure it covers screen for correct coordinates */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  touch-action: none; /* Prevent scrolling on mobile */
-  background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
-  z-index: 0;
-}
+/* Legacy Canvas Rule Removed (Moved to top) */
 
 .sim-ui {
   position: absolute;
