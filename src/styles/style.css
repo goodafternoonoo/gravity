@@ -384,4 +384,39 @@ footer {
     display: block;
     margin-top: 1rem;
   }
+
+  /* Compact Control Panel for Mobile */
+  .control-panel {
+    top: auto !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    right: 20px !important;
+    width: auto !important;
+    padding: 1rem !important;
+    max-height: 40vh; /* Limit height */
+    overflow-y: auto; /* Scroll if needed */
+  }
+
+  .control-panel h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .control-panel label {
+    font-size: 0.8rem;
+  }
+}
+
+/* Collapsed State */
+.control-panel.collapsed .control-group,
+.control-panel.collapsed .instruction,
+.control-panel.collapsed button:not(.mobile-only-toggle) {
+  display: none !important;
+}
+
+.control-panel.collapsed {
+  padding-bottom: 0.5rem !important; /* Minimal padding */
+  width: auto !important; /* Shrink to fit title */
+  display: inline-block !important; /* Don't stretch */
+  background: rgba(0, 0, 0, 0.6); /* Darker when collapsed */
 }

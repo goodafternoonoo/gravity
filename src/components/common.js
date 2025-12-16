@@ -130,4 +130,43 @@ export function initLayout() {
       });
     });
   }
+  
+  initControlPanel();
+}
+
+function initControlPanel() {
+  const panel = document.querySelector('.control-panel');
+  if (!panel) return;
+
+  const title = panel.querySelector('h3');
+  if (title) {
+    // Add Toggle Indicator
+    title.style.cursor = 'pointer';
+    title.style.display = 'flex';
+    title.style.justifyContent = 'space-between';
+    title.style.alignItems = 'center';
+    
+    const indicator = document.createElement('span');
+    indicator.textContent = '▼';
+    indicator.style.fontSize = '0.8em';
+    indicator.style.transition = 'transform 0.3s';
+    title.appendChild(indicator);
+
+    // Toggle Logic
+    title.addEventListener('click', () => {
+      panel.classList.toggle('collapsed');
+      // Rotate indicator
+      if (panel.classList.contains('collapsed')) {
+        indicator.style.transform = 'rotate(-90deg)';
+      } else {
+        indicator.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // Auto-collapse on mobile initially to save space?
+    if (window.innerWidth <= 768) {
+       panel.classList.add('collapsed');
+       indicator.style.transform = 'rotate(-90deg)';
+    }
+  }
 }
