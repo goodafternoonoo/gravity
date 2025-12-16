@@ -249,7 +249,9 @@ footer {
   z-index: 0; /* Behind header but front enough */
 }
 
-#orbit-canvas, #swarm-canvas, #audio-canvas, .fullscreen-canvas {
+#orbit-canvas, #swarm-canvas, #audio-canvas, 
+#galaxy-canvas, #cloth-canvas, #fireworks-canvas, #voyage-canvas, #pendulum-canvas,
+.fullscreen-canvas {
   display: block;
   position: fixed; /* Fix: Ensure it covers screen for correct coordinates */
   top: 0;

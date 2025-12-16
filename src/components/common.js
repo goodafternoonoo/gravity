@@ -47,6 +47,17 @@ function injectGlobalHead() {
   themeMeta.name = 'theme-color';
   themeMeta.content = '#7000ff';
   head.appendChild(themeMeta);
+
+  // Prevent zooming on mobile
+  const viewportMeta = document.createElement('meta');
+  viewportMeta.name = 'viewport';
+  viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+  // Check if viewport already exists (some HTML might have it) and remove it/replace it
+  const existingViewport = head.querySelector('meta[name="viewport"]');
+  if (existingViewport) {
+      existingViewport.remove();
+  }
+  head.appendChild(viewportMeta);
 }
 
 function injectBackgrounds() {
